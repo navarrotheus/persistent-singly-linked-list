@@ -3,8 +3,8 @@ from Node import Node
 
 
 def main():
-  input_file_lines = open("../input.txt","r").read().splitlines()
-  output_file = open("../output.txt","w")
+  input_file_lines = open("input.txt","r").read().splitlines()
+  output_file = open("output.txt","w")
 
   linked_list = LinkedList()
 
@@ -14,7 +14,7 @@ def main():
     value = int(words[1])
 
     if (operation == 'INC'):
-      linked_list.append(Node(value))
+      linked_list.append(value)
 
     if (operation == 'REM'):
       linked_list.remove(value)

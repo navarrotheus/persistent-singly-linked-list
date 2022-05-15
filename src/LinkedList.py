@@ -3,6 +3,8 @@ from Node import Node
 class LinkedList:
     def __init__(self, nodes=None):
       self.head = None
+      self.index_last_version = 0
+
       if nodes is not None:
         node = Node(value=nodes.pop(0))
         self.head = node
@@ -26,12 +28,14 @@ class LinkedList:
         yield node
         node = node.next
 
-    def append(self, new_node):
+    def append(self, new_node_value):
+      new_node = Node(new_node_value)
       if self.head is None:
         self.head = new_node
         return
       
       if (new_node.value <= self.head.value):
+        self.head.previous = new_node
         new_node.next = self.head
         self.head = new_node
         return
@@ -43,19 +47,24 @@ class LinkedList:
       new_node.next = current_node.next
       current_node.next = new_node
 
+      new_node.previous = current_node
+      if new_node.next is not None:
+        new_node.next.previous = new_node
+
     def remove(self, target_node_value):
       if self.head is None:
         raise Exception("List is empty")
 
       if self.head.value == target_node_value:
         self.head = self.head.next
+        self.head.previous = None
         return
 
-      previous_node = self.head
       for node in self:
         if node.value == target_node_value:
-            previous_node.next = node.next
-            return
-        previous_node = node
+          node.previous.next = node.next
+          if node.next is not None:
+            node.next.previous = node.previous
+          return
 
       raise Exception("Node with value '%s' not found" % target_node_value)
