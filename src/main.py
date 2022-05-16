@@ -15,20 +15,34 @@ def main():
 
     if (operation == 'INC'):
       linked_list.append(value)
+      print(linked_list)
+      print(f'{str(value)} inserted')
+      print(" ")
 
     if (operation == 'REM'):
       linked_list.remove(value)
+      print(linked_list)
+      print(f'{str(value)} removed')
+      print(" ")
 
     if (operation == 'SUC'):
-      # TODO
+      output_file.write(words[0] + " " + words[1] + " " + words[2] + "\n")
+
+      successor = linked_list.successor(int(words[1]), int(words[2]))
+      
+      if successor is None:
+        successor = "INF"
+
+      output_file.write(str(successor) + "\n")
       pass
 
     if (operation == 'IMP'):
-      for node in linked_list:
-        output_file.write(node.value + " ")
+      versioned_list = linked_list.get_list_by_version(value)
 
+      output_file.write(words[0] + " " + words[1] + "\n")
+      for node in versioned_list:
+        output_file.write(str(node) + " ")
+      output_file.write("\n")
       pass
-    
-    print(linked_list)
 
 main()
