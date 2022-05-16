@@ -50,3 +50,12 @@ IMP 65
 Exemplo no arquivo de saída para árvore rubro-negra:
 IMP 65
 13,2,R 42,1,N 50,0,N 52,2,R 65,1,N
+
+## Instruções
+
+1. Entrar na pasta _src_
+   - `cd src`
+2. Alterar o arquivo _input.txt_ de acordo com os comandos desejados
+3. Rodar o arquivo _main.py_
+   - `python main.py`
+4. Ver resultados no arquivo _output.txt_
